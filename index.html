@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXUS | 50 Dimensions</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:#d9fbff;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 50% 15%,#183e70,#090e29 65%,#020511);padding:18px}
+.wrap{max-width:760px;margin:auto}.top{display:flex;justify-content:space-between;font-size:12px;letter-spacing:2px}.online{color:#72ffd9}
+header{text-align:center;padding:26px 0}header .small{font-size:10px;letter-spacing:6px;color:#8cefff}header h1{font-size:42px;letter-spacing:9px;margin:10px 0;text-shadow:0 0 12px white,0 0 30px #00dfff,0 0 45px #8755ff}header p{font-size:10px;letter-spacing:3px;color:#d8c5ff}
+.panel{border:1px solid #54eaff88;border-radius:18px;padding:22px;background:linear-gradient(145deg,#164b7799,#19113fdd);box-shadow:0 0 25px #00dfff33;min-height:245px}
+.center{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}.welcome-icon{font-size:72px;margin:12px}.welcome-title{font-size:24px;letter-spacing:5px}
+button{cursor:pointer;color:#baf8ff;background:#0b285b88;border:1px solid #42d9ed88;border-radius:12px;padding:13px;font-size:14px;transition:.2s}button:active{background:#15558b;box-shadow:0 0 18px #22dfff}
+.primary{width:100%;margin-top:18px;letter-spacing:3px;padding:16px}
+.hidden{display:none!important}.index-title{text-align:center;font-size:25px;letter-spacing:5px;margin:5px}.sub{text-align:center;color:#8cefff;font-size:11px;letter-spacing:2px;margin:10px 0 18px}
+#topicList{display:flex;flex-direction:column;gap:8px}.topic-link{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:13px}.pg{color:#79edff;font-size:11px;min-width:65px}.topic-name{flex:1;letter-spacing:1px;font-size:13px}.arrow{font-size:20px}
+.topic-card{width:100%;min-height:260px;border-radius:18px;border:1px solid #54eaff99;background:linear-gradient(145deg,#164b7799,#19113fdd);box-shadow:0 0 20px #00dfff55,0 0 45px #9255ff33,inset 0 0 35px #00dfff20;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .35s,transform .35s}
+.topic-icon{font-size:70px;margin-bottom:20px;filter:drop-shadow(0 0 15px #4beaff)}.topic-title{font-size:24px;letter-spacing:4px}.hint{font-size:10px;letter-spacing:2px;color:#a8eaff;margin-top:22px}
+.meta{display:flex;justify-content:space-between;font-size:12px;letter-spacing:2px;margin-top:22px}.slider{width:100%;margin:16px 0;accent-color:#54efff}.ticks{display:flex;justify-content:space-between;color:#a8dce9;font-size:10px}
+.nav{display:flex;gap:12px;margin-top:22px}.nav button{flex:1}
+.detailbox{border:1px solid #42d9ed55;border-radius:13px;background:#0b2146;padding:16px;margin-top:15px}.detailbox h3{font-size:13px;letter-spacing:2px;color:#8cefff;margin:0 0 12px}.detailbox p{font-size:14px;line-height:1.6;margin:0}
+#topicImage{width:100%;max-height:260px;object-fit:cover;border-radius:9px;display:none}#fallback{text-align:center;font-size:55px;padding:28px}
+.back{margin-bottom:14px}.video{display:block;text-align:center;text-decoration:none;color:#a9faff;border:1px solid #42d9ed88;border-radius:12px;padding:13px;background:#123d64}
+footer{text-align:center;color:#8bbcc9;font-size:10px;letter-spacing:2px;margin:25px 0 5px}
+</style>
+</head>
+<body><main class="wrap">
+<div class="top"><span>✧ NEXUS SYSTEM</span><span class="online">● ONLINE</span></div>
+<header><div class="small">ADVANCED HOLOGRAM</div><h1>NEXUS</h1><p>50 DIMENSIONS</p></header>
+<section id="welcome">
+ <div class="panel center"><div class="welcome-icon">✧</div><div class="welcome-title">WELCOME</div><div class="hint">EXPLORE THE FUTURE</div></div>
+ <button class="primary" id="enter">OPEN INDEX →</button>
+</section>
+<section id="index" class="hidden">
+ <div class="index-title">INDEX</div><div class="sub">50 TOPICS • SELECT A PAGE</div>
+ <div id="topicList"></div>
+ <button class="primary" id="indexBack">← BACK TO WELCOME</button>
+</section>
+<section id="topic" class="hidden">
+ <button class="back" id="toIndex">← INDEX</button>
+ <button class="topic-card" id="topicCard"><span class="topic-icon" id="topicIcon"></span><span class="topic-title" id="topicTitle"></span><span class="hint">TAP TO EXPLORE DETAILS ↗</span></button>
+ <div class="meta"><span>PAGE SLIDER</span><span id="count">01 / 50</span></div>
+ <input class="slider" id="slider" type="range" min="0" max="49" value="0">
+ <div class="ticks"><span>01</span><span>10</span><span>20</span><span>30</span><span>40</span><span>50</span></div>
+ <div class="nav"><button id="prev">← PREVIOUS</button><button id="next">NEXT →</button></div>
+</section>
+<section id="details" class="hidden">
+ <button class="back" id="detailBack">← BACK TO PAGE</button>
+ <div class="panel center"><div class="topic-icon" id="detailIcon"></div><div class="topic-title" id="detailTitle"></div></div>
+ <div class="detailbox"><h3>📖 DEFINITION</h3><p id="definition"></p></div>
+ <div class="detailbox"><h3>🖼️ PICTURE</h3><img id="topicImage" alt="Topic picture"><div id="fallback">✨</div></div>
+ <div class="detailbox"><h3>▶ VIDEO</h3><a class="video" id="video" target="_blank" rel="noopener">▶ WATCH EDUCATIONAL VIDEO</a></div>
+</section>
+<footer>✦ SOFT MOTION • NEON LIGHTS • FUTURE ✦</footer>
+</main>
+<script>
+const topics=[
+['🌌','GALAXY','A galaxy is a huge collection of stars, gas, dust and dark matter held together by gravity.'],
+['🪐','PLANETS','A planet is a celestial body that orbits a star and does not produce its own light.'],
+['🌙','MOON','The Moon is Earth’s natural satellite. It reflects sunlight and revolves around Earth.'],
+['☀️','THE SUN','The Sun is the star at the centre of our solar system and the main source of energy for Earth.'],
+['⭐','STARS','Stars are huge balls of hot gas that produce light and heat.'],
+['🚀','SPACE TRAVEL','Space travel means travelling beyond Earth using spacecraft.'],
+['👨‍🚀','ASTRONAUTS','Astronauts are trained people who travel into space for exploration and research.'],
+['🛸','FUTURE CRAFT','Future spacecraft are designed to help people explore space.'],
+['🌠','METEORS','A meteor is a streak of light produced when a space rock burns in Earth’s atmosphere.'],
+['🤖','ROBOTICS','Robotics is the branch of technology concerned with designing and building robots.'],
+['🦾','ROBOT ARMS','A robotic arm is a mechanical device that performs movements and tasks.'],
+['🧠','ARTIFICIAL INTELLIGENCE','Artificial intelligence enables computers to perform tasks that usually require human intelligence.'],
+['💻','COMPUTERS','A computer is an electronic device that processes and stores information.'],
+['📡','SATELLITES','Satellites orbit planets and help with communication, navigation and research.'],
+['⚡','ENERGY','Energy is the capacity to do work or bring about change.'],
+['🔋','BATTERIES','A battery converts chemical energy into electrical energy.'],
+['☀️','SOLAR POWER','Solar power is energy obtained from sunlight.'],
+['🌬️','WIND POWER','Wind power uses moving air to generate electricity.'],
+['🌱','GREEN FUTURE','A green future focuses on protecting nature and using resources sustainably.'],
+['🌊','OCEANS','Oceans are large bodies of salt water covering most of Earth.'],
+['🐬','MARINE LIFE','Marine life includes organisms that live in seas and oceans.'],
+['🐠','CORAL REEFS','Coral reefs are underwater ecosystems formed by coral animals.'],
+['🪼','JELLYFISH','Jellyfish are soft-bodied marine animals with tentacles.'],
+['🐋','WHALES','Whales are large marine mammals that breathe air.'],
+['🌳','FORESTS','Forests are areas covered with trees and vegetation that support wildlife.'],
+['🦋','BUTTERFLIES','Butterflies are insects that develop through four life stages.'],
+['🌸','FLOWERS','Flowers are the reproductive structures of flowering plants.'],
+['🌈','RAINBOW','A rainbow forms when sunlight is refracted and reflected by water droplets.'],
+['❄️','ICE WORLD','Ice forms when water freezes.'],
+['🌋','VOLCANOES','A volcano is an opening in Earth’s crust through which molten rock and gases escape.'],
+['🏔️','MOUNTAINS','Mountains are high natural landforms rising above surrounding land.'],
+['☁️','CLOUDS','Clouds are collections of tiny water droplets or ice crystals.'],
+['🌧️','RAINFALL','Rainfall occurs when water droplets in clouds fall to Earth.'],
+['🌍','OUR EARTH','Earth is the third planet from the Sun and supports life.'],
+['🧬','DNA','DNA is the molecule that carries genetic information.'],
+['🔬','MICROSCOPY','Microscopy uses microscopes to observe very small objects.'],
+['🧪','SCIENCE LAB','A science laboratory is a place for experiments and investigations.'],
+['⚛️','ATOMS','Atoms are the basic units of ordinary matter.'],
+['🧫','CELLS','A cell is the basic structural and functional unit of life.'],
+['🦴','HUMAN BODY','The human body consists of organ systems that work together.'],
+['❤️','HEART','The heart is a muscular organ that pumps blood throughout the body.'],
+['🧭','DISCOVERY','Discovery means finding or learning something previously unknown.'],
+['🏛️','HISTORY','History is the study of past events, people and societies.'],
+['🎨','ART','Art is creative expression through drawing, painting and other forms.'],
+['🎵','MUSIC','Music is an organised combination of sounds, rhythm and melody.'],
+['📚','KNOWLEDGE','Knowledge is understanding gained through learning and experience.'],
+['💡','INVENTIONS','An invention is a new device, method or process.'],
+['🔮','FUTURE WORLD','The future may bring new discoveries and technologies.'],
+['✨','INFINITY','Infinity is a concept representing something without an end or limit.']
+];
+const $=id=>document.getElementById(id),sections=['welcome','index','topic','details'];
+function show(id){sections.forEach(s=>$(s).classList.toggle('hidden',s!==id))}
+const pad=n=>String(n).padStart(2,'0');let current=0,token=0;
+topics.forEach((d,i)=>{let b=document.createElement('button');b.className='topic-link';b.innerHTML='<span class="pg">PAGE '+pad(i+1)+'</span><span class="topic-name">'+d[0]+' &nbsp; '+d[1]+'</span><span class="arrow">›</span>';b.addEventListener('click',()=>{render(i);show('topic')});$('topicList').appendChild(b)});
+function render(i){current=Math.max(0,Math.min(49,i));let d=topics[current],card=$('topicCard'),t=++token;$('slider').value=current;$('count').textContent=pad(current+1)+' / 50';card.style.opacity='0';card.style.transform='translateY(7px)';setTimeout(()=>{if(t!==token)return;$('topicIcon').textContent=d[0];$('topicTitle').textContent=d[1];card.style.opacity='1';card.style.transform='translateY(0)'},180)}
+function openDetails(){let d=topics[current],t=++token;show('details');$('detailIcon').textContent=d[0];$('detailTitle').textContent=d[1];$('definition').textContent=d[2];let img=$('topicImage'),fb=$('fallback');img.style.display='none';fb.style.display='block';fb.textContent=d[0];img.onload=()=>{if(t===token){img.style.display='block';fb.style.display='none'}};img.src='https://en.wikipedia.org/wiki/Special:FilePath/'+encodeURIComponent(d[1].replaceAll(' ','_')+'.jpg');$('video').href='https://www.youtube.com/results?search_query='+encodeURIComponent(d[1]+' educational video')}
+$('enter').onclick=()=>show('index');$('indexBack').onclick=()=>show('welcome');$('toIndex').onclick=()=>show('index');$('topicCard').onclick=openDetails;$('detailBack').onclick=()=>show('topic');$('slider').oninput=e=>render(+e.target.value);$('prev').onclick=()=>render(current-1);$('next').onclick=()=>render(current+1);render(0);
+</script></body></html>
